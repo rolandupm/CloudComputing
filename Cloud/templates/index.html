@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <body>
+	{% extends "layout.html" %}
+	{% block content %}
+	
+	  <div class="index">
+	    <h1></h1>
+	    
+	  </div>
+	<input type="file" id="real-file" hidden="hidden" />
+	
+	<form method="post" action="/" enctype="multipart/form-data">
+	    <dl>
+		<p>
+			<input type="file" value = "Upload" name="file" id = "file" onchange="loadFile(event)"  autocomplete="off" required>
+		</p>
+	    </dl>
+	        <p>
+			<input type="submit" value="Submit">
+		</p>
+	<img id="output" width="400" height="512" class="center" src="/static/img/5.png" />
+	<p> </p>
+	<p>
+	
+	<script>
+	  var loadFile = function(event) {
+	    var output = document.getElementById('output');
+	    output.src = URL.createObjectURL(event.target.files[0]);
+	  };
+	</script>
+	<p> </p>
+	<p> </p>
+	<p> </p>
+	<p style="font-size:20px">Result</p>
+	<p> </p>
+	<p> </p>
+	<p> </p>
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+                <ul class=flashes id="bigFont">
+                {% for message in messages %}
+                  <li style="font-size:30px">{{ message }}</li>
+                {% endfor %}
+                </ul>
+          {% endif %}
+        {% endwith %}
+        </p>
+	
+	<div class="navbar">
+	</div>
+	<script type="text/javascript"
+        	 src="{{ url_for('static', filename='js/main.js') }}"></script>
+	{% endblock %}
+  </body>
+</html>
